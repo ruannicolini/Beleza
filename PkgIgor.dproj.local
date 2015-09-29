@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2015/09/28 18:59:27.000.856,=C:\Componentes Magnus D7\BarraFerramentas.pas</Transaction>
+    <Transaction>2015/09/28 18:59:49.000.244,C:\Componentes Magnus D7\BarraFerramentas.pas=C:\Users\Maykel\Documents\Embarcadero\Studio\Projects\PkgIgor\BarraFerramentas.pas</Transaction>
+    <Transaction>2015/09/28 19:00:25.000.940,=C:\Componentes Magnus D7\CopiaTabela.pas</Transaction>
+    <Transaction>2015/09/28 19:00:33.000.788,C:\Componentes Magnus D7\CopiaTabela.pas=C:\Users\Maykel\Documents\Embarcadero\Studio\Projects\PkgIgor\CopiaTabela.pas</Transaction>
+    <Transaction>2015/09/28 19:01:17.000.779,=C:\Componentes Magnus D7\GeraTXT.pas</Transaction>
+  </Transactions>
+</BorlandProject>
