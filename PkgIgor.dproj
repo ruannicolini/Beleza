@@ -141,6 +141,8 @@
         <DCCReference Include="FireDAC.dcp"/>
         <DCCReference Include="FireDACCommonDriver.dcp"/>
         <DCCReference Include="FireDACCommon.dcp"/>
+        <DCCReference Include="DbxCommonDriver.dcp"/>
+        <DCCReference Include="dbexpress.dcp"/>
         <DCCReference Include="Edit_Calendario.pas"/>
         <DCCReference Include="DBGridBeleza.pas"/>
         <DCCReference Include="uMsg.pas"/>
@@ -152,6 +154,16 @@
         <DCCReference Include="BarraFerramentas.pas"/>
         <DCCReference Include="CopiaTabela.pas"/>
         <DCCReference Include="GeraTXT.pas"/>
+        <DCCReference Include="ItemDetailsUnit.pas">
+            <Form>ItemDetailsForm</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="GanttDataBinder3.pas"/>
+        <DCCReference Include="GBlur2.pas"/>
+        <DCCReference Include="MiscHelpFunctions.pas"/>
+        <DCCReference Include="DBNavigatoraf.pas"/>
+        <DCCReference Include="GanttUnit.pas"/>
+        <DCCReference Include="DBSQLEditBeleza.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -518,9 +530,9 @@
                 <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
-                <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
             </Deployment>
             <Platforms>
                 <Platform value="Android">False</Platform>

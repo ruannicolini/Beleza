@@ -20,7 +20,7 @@ type
     FRegistrosCopiados: Integer;
     procedure settaborig(const Value: TClientDataSet);
     procedure settabdest(const Value: TClientDataSet);
-    Procedure Copiar;
+    procedure Copiar;
     Procedure Copiar_Reg;
     Function Verif_Tabs: boolean;
     procedure setcampos(const Value: TStrings);
@@ -64,8 +64,8 @@ end;
 
 procedure TCopiaTabela.Copiar;
 begin
-                showmessage('ok');
   if not Verif_Tabs then;
+
 
   //Max da Barra de Progresso
   if assigned(fbarra) then
@@ -80,6 +80,7 @@ begin
       Progr := tCaixaProgresso.Create;
       Progr.mostrar(ftaborig.RecordCount);
   end;
+
 
   //Copiar dados da tab origem para tab destino
   ftaborig.first;
@@ -99,11 +100,13 @@ begin
 end;
 
 procedure TCopiaTabela.Exec_Copia;
-begin                        showmessage('ok');
+begin
   if assigned(fAntes_Copia) then
       Antes_Copia(self);
 
+
   Copiar;
+
 
   if assigned(fDepois_Copia) then
       Depois_Copia(self);
@@ -209,7 +212,6 @@ end;
 
 Function TCopiaTabela.Verif_Tabs: boolean;
 begin
-
   if not ftabdest.active then
   begin
       ShowMessage('Tabela Destino Fechada!');

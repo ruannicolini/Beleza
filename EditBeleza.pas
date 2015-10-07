@@ -155,7 +155,7 @@ begin
 
   if (ClientDB.RecordCount > 1) or (fMostrar) then
   begin
-      tTela             := tTelaSelRegistros.Create(self);
+      tTela             := tTelaSelRegistros.CreateNew(self);
       tTela.Dataset     := ClientDB;
       tTela.MultiSelect := Ativar_MultiSelecao;
       tTela.Abrir;

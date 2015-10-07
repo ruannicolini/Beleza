@@ -101,7 +101,6 @@ begin
   tOrd.OnShow       := ShowTelaOrd;
   tOrd.OnKeyDown    := EscTelaOrd;
   tOrd.KeyPreview   := True;
-  tOrd.Font.Color   := clPurple;
 
   // Botao de Confirmação
   b                 := TButton.Create(tOrd);
@@ -113,7 +112,6 @@ begin
   b.OnClick         := ClickOKTelaOrd;
   b.Parent          := tOrd;
   b.Width           := 85;
-  b.Font.Color      := clPurple;
 
   // Label Titulo da Tela
   lb                := TLabel.Create(tOrd);
@@ -124,7 +122,6 @@ begin
   lb.Top            := 10;
   lb.Left           := 15;
   lb.Parent         := tOrd;
-  lb.Font.Color     := clPurple;
 
   // Botão para Cancelar
   b                 := TButton.Create(tOrd);
@@ -154,7 +151,6 @@ begin
       cb.Name      := 'cb' + IntToStr(i);
       cb.BevelKind := bkFlat;
       cb.Width     := 250;
-      cb.Font.Color := clPurple;
 
       for Col := 0 to Columns.Count - 1 do
           if Trim(Columns[Col].FieldName) <> '' then

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2015/09/18 12:54:35.000.711,=rtl.dcp</Transaction>
+    <Transaction>2015/09/18 12:56:58.000.833,=rtl.dcp</Transaction>
+    <Transaction>2015/09/18 12:57:18.000.110,C:\Users\IEUser\Documents\Embarcadero\Studio\Projects\PkgIgor\PkgIgor.dproj=C:\Users\IEUser\Documents\Embarcadero\Studio\Projects\Package1.dproj</Transaction>
+    <Transaction>2015/09/18 12:58:46.000.483,=C:\Users\IEUser\Documents\Embarcadero\Studio\Projects\PkgIgor\Unit1.pas</Transaction>
+    <Transaction>2015/09/18 13:00:08.000.478,C:\Users\IEUser\Documents\Embarcadero\Studio\Projects\PkgIgor\uTelaSelRegistros.pas=C:\Users\IEUser\Documents\Embarcadero\Studio\Projects\PkgIgor\Unit1.pas</Transaction>
+    <Transaction>2015/09/18 13:03:32.000.130,C:\Users\IEUser\Documents\Embarcadero\Studio\Projects\PkgIgor\uTelaSelRegistros.pas=</Transaction>
+    <Transaction>2015/09/18 13:03:48.000.271,=C:\Users\IEUser\Documents\Embarcadero\Studio\Projects\PkgIgor\Unit1.pas</Transaction>
+    <Transaction>2015/09/18 13:04:13.000.279,=C:\Users\IEUser\Documents\Embarcadero\Studio\Projects\PkgIgor\Unit2.pas</Transaction>
+    <Transaction>2015/09/18 13:04:33.000.936,C:\Users\IEUser\Documents\Embarcadero\Studio\Projects\PkgIgor\uCaixaProgresso.pas=C:\Users\IEUser\Documents\Embarcadero\Studio\Projects\PkgIgor\Unit2.pas</Transaction>
+    <Transaction>2015/09/18 13:07:10.000.685,C:\Users\IEUser\Documents\Embarcadero\Studio\Projects\PkgIgor\DBGridBeleza.pas=C:\Users\IEUser\Documents\Embarcadero\Studio\Projects\PkgIgor\Unit1.pas</Transaction>
+    <Transaction>2015/09/18 13:07:40.000.238,C:\Users\IEUser\Documents\Embarcadero\Studio\Projects\PkgIgor\DBGridBeleza.pas=</Transaction>
+    <Transaction>2015/09/18 13:07:47.000.374,C:\Users\IEUser\Documents\Embarcadero\Studio\Projects\PkgIgor\uCaixaProgresso.pas=</Transaction>
+    <Transaction>2015/09/18 13:25:03.000.646,=C:\Users\IEUser\Documents\Embarcadero\Studio\Projects\PkgIgor\uMsg.pas</Transaction>
+    <Transaction>2015/09/18 13:25:53.000.423,C:\Users\IEUser\Documents\Embarcadero\Studio\Projects\PkgIgor\uMsg.pas=</Transaction>
+    <Transaction>2015/09/18 13:26:14.000.264,=C:\Componentes Magnus D7\uMsg.pas</Transaction>
+    <Transaction>2015/09/18 13:26:22.000.242,C:\Componentes Magnus D7\uMsg.pas=C:\Users\IEUser\Documents\Embarcadero\Studio\Projects\PkgIgor\Units\uMsg.pas</Transaction>
+    <Transaction>2015/09/18 13:28:43.000.807,=vcl.dcp</Transaction>
+    <Transaction>2015/09/18 13:36:35.000.676,=C:\Users\IEUser\Documents\Embarcadero\Studio\Projects\PkgIgor\Units\uTelaSelRegistros.pas</Transaction>
+    <Transaction>2015/09/18 13:37:18.000.605,C:\Users\IEUser\Documents\Embarcadero\Studio\Projects\PkgIgor\Units\uTelaSelRegistros.pas=</Transaction>
+    <Transaction>2015/09/18 13:37:57.000.683,=C:\Users\IEUser\Documents\Embarcadero\Studio\Projects\PkgIgor\Units\uTelaBuscaCEP.pas</Transaction>
+    <Transaction>2015/09/18 13:38:31.000.209,=IndySystem.dcp</Transaction>
+    <Transaction>2015/09/18 13:38:31.000.243,=IndyProtocols.dcp</Transaction>
+    <Transaction>2015/09/18 13:38:31.000.271,=IndyCore.dcp</Transaction>
+    <Transaction>2015/09/18 13:45:26.000.572,=C:\Users\IEUser\Documents\Embarcadero\Studio\Projects\PkgIgor\Edit_Calendario.pas</Transaction>
+    <Transaction>2015/09/18 13:52:29.288,=rtl.dcp</Transaction>
+    <Transaction>2015/09/18 13:52:31.469,=C:\Users\IEUser\Documents\Embarcadero\Studio\Projects\PkgIgor\Edit_Calendario.pas</Transaction>
+    <Transaction>2015/09/18 13:52:31.474,=designide.dcp</Transaction>
+    <Transaction>2015/09/18 13:52:31.480,=vcl.dcp</Transaction>
+    <Transaction>2015/09/18 13:52:31.485,=vclactnband.dcp</Transaction>
+    <Transaction>2015/09/18 13:52:31.490,=vclx.dcp</Transaction>
+    <Transaction>2015/09/18 13:52:31.496,=xmlrtl.dcp</Transaction>
+  </Transactions>
+</BorlandProject>

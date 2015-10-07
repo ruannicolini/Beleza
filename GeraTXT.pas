@@ -70,7 +70,7 @@ var campo: short;
     f: textfile;
     linha: string;
     i : integer;
-begin
+begin                            showmessage('ok');
   //Procedure que Gera o arquivo com a tab indicada
 
   //verifica se EVENTO foi assimilado
