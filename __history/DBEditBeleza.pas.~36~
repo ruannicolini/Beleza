@@ -113,7 +113,7 @@ begin
   // query da Pesquisa
   q                 := TFDQuery.Create(self);
   q.ConnectionName  := Database;
-  q.sql.text        := sql.Text;
+  q.sql.text        := Sql.Text;
   Prov.DataSet      := q;
 
   if q.ParamCount = 0 then
@@ -139,18 +139,16 @@ begin
   ClientDB.Next;
   ClientDB.First;
 
-  if (ClientDB.RecordCount > 1) or (fmostrar) then
+  if (ClientDB.RecordCount > 1) or (FMostrar) then
   begin
-      //tTela         := tTelaSelRegistros.Create(self); // PROBLEMA AQUI
+      tTela := tTelaSelRegistros.CreateNew(Self); // PROBLEMA AQUI
 
-      tTela := tForm.Create(self);
-      showmessage('trim');
-      //tTela.NameDataset := ClientDB;
+      tTela.Dataset := ClientDB;
       tTela.Abrir;
       if tTela.Tag = 1 then exit;
   end;
 
-  Text := ClientDB.fieldbyname(campo).AsString;
+  Text := ClientDB.FieldbyName(Campo).AsString;
   DataSource.DataSet.FieldbyName(DataField).AsString := Text;
 
   //verifica se tem q preencher o outro edit
@@ -166,7 +164,7 @@ begin
   //marcar o Checkbox (se tiver associado)
   try
       if Assigned(fcheck) then
-          fcheck.Checked:= true;
+          fcheck.Checked:= True;
   except
   end;
 
@@ -177,7 +175,7 @@ begin
 
 end;
 
-constructor TDBEditBeleza.create(dono: tcomponent);
+constructor TDBEditBeleza.Create(dono: tcomponent);
 begin
   inherited;
   fsql      := tstringlist.create;
@@ -188,7 +186,7 @@ begin
   Width           := 200;
   font.name       := 'Tahoma';
   Text            := '';
-  Ativar_Pesquisa := true;
+  Ativar_Pesquisa := True;
   CorBorda        := clGray;
   
   Botao           := TButton.Create(self);
@@ -239,7 +237,7 @@ begin
 
   if button = mbright then
   begin
-      setfocus;
+      Setfocus;
       Botao.Click;
   end;
 
@@ -251,7 +249,7 @@ begin
   Botao.Repaint;
 end;
 
-procedure TDBEditBeleza.resize;
+procedure TDBEditBeleza.Resize;
 begin
   inherited;
   Botao.Width  := 22;
@@ -265,7 +263,7 @@ begin
   Fcampo := Value;
 end;
 
-procedure TDBEditBeleza.setcheck(const Value: TCheckBox);
+procedure TDBEditBeleza.Setcheck(const Value: TCheckBox);
 begin
   fcheck := Value;
 end;

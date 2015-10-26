@@ -113,7 +113,7 @@ begin
   // query da Pesquisa
   q                 := TFDQuery.Create(self);
   q.ConnectionName  := Database;
-  q.sql.text        := sql.Text;
+  q.sql.text        := Sql.Text;
   Prov.DataSet      := q;
 
   if q.ParamCount = 0 then
@@ -139,16 +139,17 @@ begin
   ClientDB.Next;
   ClientDB.First;
 
-  if (ClientDB.RecordCount > 1) or (fmostrar) then
+  if (ClientDB.RecordCount > 1) or (FMostrar) then
   begin
-      tTela         := tTelaSelRegistros.CreateNew(self); // PROBLEMA AQUI
+      tTela := tTelaSelRegistros.CreateNew(Self); // PROBLEMA AQUI
+      tTela.Dataset := ClientDB;
+      TDBEdit(f_outroedit).DataSource.DataSet.fieldbyname(TDBEdit(f_outroedit).DataField).Value := '';
 
-      //tTela.NameDataset := ClientDB;
       tTela.Abrir;
       if tTela.Tag = 1 then exit;
   end;
 
-  Text := ClientDB.fieldbyname(campo).AsString;
+  Text := ClientDB.FieldbyName(Campo).AsString;
   DataSource.DataSet.FieldbyName(DataField).AsString := Text;
 
   //verifica se tem q preencher o outro edit
@@ -164,7 +165,7 @@ begin
   //marcar o Checkbox (se tiver associado)
   try
       if Assigned(fcheck) then
-          fcheck.Checked:= true;
+          fcheck.Checked:= True;
   except
   end;
 
@@ -175,7 +176,7 @@ begin
 
 end;
 
-constructor TDBEditBeleza.create(dono: tcomponent);
+constructor TDBEditBeleza.Create(dono: tcomponent);
 begin
   inherited;
   fsql      := tstringlist.create;
@@ -186,7 +187,7 @@ begin
   Width           := 200;
   font.name       := 'Tahoma';
   Text            := '';
-  Ativar_Pesquisa := true;
+  Ativar_Pesquisa := True;
   CorBorda        := clGray;
   
   Botao           := TButton.Create(self);
@@ -211,9 +212,10 @@ begin
       begin
           if f_outroedit is TDBEdit then
           begin
-//              TDBEdit(f_outroedit).DataSource.DataSet.fieldbyname(TDBEdit(f_outroedit).DataField).Value := ''
+// VERIFICAR ESSA FUNÇÃO
+              TDBEdit(f_outroedit).DataSource.DataSet.fieldbyname(TDBEdit(f_outroedit).DataField).Value := '';
               if TDBEdit(f_outroedit).DataSource.State in dsEditModes then
-                  TDBEdit(f_outroedit).DataSource.DataSet.fieldbyname(TDBEdit(f_outroedit).DataField).Clear
+                TDBEdit(f_outroedit).DataSource.DataSet.fieldbyname(TDBEdit(f_outroedit).DataField).Clear
           end
           else
               f_outroedit.Clear;
@@ -237,7 +239,7 @@ begin
 
   if button = mbright then
   begin
-      setfocus;
+      Setfocus;
       Botao.Click;
   end;
 
@@ -249,7 +251,7 @@ begin
   Botao.Repaint;
 end;
 
-procedure TDBEditBeleza.resize;
+procedure TDBEditBeleza.Resize;
 begin
   inherited;
   Botao.Width  := 22;
@@ -263,7 +265,7 @@ begin
   Fcampo := Value;
 end;
 
-procedure TDBEditBeleza.setcheck(const Value: TCheckBox);
+procedure TDBEditBeleza.Setcheck(const Value: TCheckBox);
 begin
   fcheck := Value;
 end;

@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ComCtrls, mask, DBCtrls, Buttons;
+  StdCtrls, ComCtrls, Mask, DBCtrls, Buttons;
 
 type
 
@@ -16,28 +16,28 @@ type
     { Private declarations }
     Botao: TBitBtn;
     Calend: TMonthCalendar;
-    tela: TForm;
-    fformat: String;
-    fValidarData: tValidarData;
-    fAoErroValidar: tErroValidar;
+    Tela: TForm;
+    FFormat: String;
+    FValidarData: tValidarData;
+    FAoErroValidar: tErroValidar;
     procedure Clicar(sender: TObject);
     procedure DblClicar(sender: TObject);
     procedure Clicar_Calend(sender: TObject);
     procedure setformato(const Value: String);
-    procedure fechar_tela_calendar(Sender: TObject; var Action: TCloseAction);
+    procedure Fechar_Tela_Calendar(Sender: TObject; var Action: TCloseAction);
   protected
     { Protected declarations }
   public
     { Public declarations }
     constructor create (dono: tcomponent); override;
-    procedure resize; override;
+    procedure Resize; override;
     procedure RePaint; override;
     procedure KeyPress (var Key: char); override;
     procedure DoExit; override;
     procedure Change; override;
   published
     { Published declarations }
-    Property Formato_Data: String read fformat write setformato;
+    Property Formato_Data: String read FFormat write Setformato;
 
     //Eventos
     property AoValidarData: tValidarData read fValidarData write fValidarData;
@@ -58,43 +58,31 @@ end;
 
 { TDBEdit_Calendario }
 
-procedure TDBEdit_Calendario.Clicar(sender: TObject);
+procedure TDBEdit_Calendario.Clicar(Sender: TObject);
 begin
 
-  //Abrir form com Calendario
-  if tela <> nil then exit;
+  if Tela <> nil then exit;
 
   Tela        := TForm.Create(Self);
-  Tela.Width  := 169;
-  Tela.Height := 127;
+  Tela.Width  := 230;
+  Tela.Height := 171;
+  Tela.Parent := Self.Parent;
 
-  //Verificar se cabe na tela abrir o
-  //relatorio a direita do mouse
-  {if mouse.Cursorpos.x + Tela.Width > Screen.Width then
-    Tela.Left := (mouse.Cursorpos.x - Tela.Width)
-  else Tela.Left := mouse.Cursorpos.x;
+  Tela.Show;
 
-  //Verificar se cabe na tela abrir o
-  //relatorio abaixo do mouse
-  if mouse.Cursorpos.y + Tela.Height > Screen.Height then
-    Tela.Top := (mouse.Cursorpos.y - Tela.Height)
-  else Tela.Top := mouse.Cursorpos.y;
-  }
-  tela.Top  := 10;
-  tela.Left := 10;
+  Tela.Left := (TButton(Sender).Parent).Left;
+  Tela.Top := (TButton(Sender).Parent).Top + (TButton(Sender).Parent).Height + 2;
 
-  showmessage(inttostr(mouse.Cursorpos.x)+' '+inttostr(tela.left));
+  Tela.BorderStyle    := bsDialog;
+  Tela.FormStyle      := fsStayOnTop;
+  Tela.OnClose        := Fechar_Tela_Calendar;
 
-  Tela.BorderStyle  := bsSingle;
-  Tela.FormStyle    := fsStayOnTop;
-  Tela.OnClose      := fechar_tela_calendar;
-
-  Calend            := TMonthCalendar.create(self);
-  Calend.OnDBlClick := Clicar_Calend;
-  Calend.Hint       := 'Duplo clique para Selecionar a Data';
-  Calend.ShowHint   := true;
-  Calend.Font.Name  := 'Arial';
-  Calend.Font.Size  := 7;
+  Calend              := TMonthCalendar.Create(self);
+  Calend.OnDBlClick   := Clicar_Calend;
+  Calend.Hint         := 'Duplo clique para selecionar a data';
+  Calend.ShowHint     := true;
+  Calend.Font.Name    := 'Arial';
+  Calend.Font.Size    := 7;
   Calend.CalColors.BackColor        := clwindow;
   Calend.CalColors.MonthBackColor   := $00E1FFFF;
   Calend.CalColors.TextColor        := clWindowText;
@@ -103,14 +91,12 @@ begin
   Calend.CalColors.TrailingTextColor:= clGray;
   Calend.ShowToday                  := False;
   Calend.AutoSize                   := True;
-  Calend.Parent                     := tela;
+  Calend.Parent                     := Tela;
   Calend.Show;
-
-  Tela.Show;
 
 end;
 
-constructor TDBEdit_Calendario.create(dono: tcomponent);
+constructor TDBEdit_Calendario.Create(Dono: TComponent);
 begin
   inherited;
 
@@ -122,12 +108,12 @@ begin
   Botao.Font.Name := 'Arial';
   Botao.Font.Size := 7;
   Botao.Caption   := '15';
-  botao.hint      := 'Clique aqui para Calendario';
-  botao.ShowHint  := true;
+  Botao.hint      := 'Clique aqui para Calendario';
+  Botao.ShowHint  := true;
   Botao.TabStop   := False;
   Botao.parent    := self;
 
-  text            := '';
+  Text            := '';
   formato_data    := 'dd/mm/yy';
   EditMask        := '##/##/##';
   MaxLength       := length(Formato_Data);
@@ -171,8 +157,8 @@ end;
 
 procedure TDBEdit_Calendario.setformato(const Value: String);
 begin
-  fformat   := Value;
-  MaxLength := length(Formato_Data);
+  FFormat   := Value;
+  MaxLength := Length(Formato_Data);
 end;
 
 procedure TDBEdit_Calendario.KeyPress(var Key: char);
@@ -181,11 +167,11 @@ begin
 
 end;
 
-procedure TDBEdit_Calendario.fechar_tela_calendar(Sender: TObject;
+procedure TDBEdit_Calendario.Fechar_Tela_Calendar(Sender: TObject;
   var Action: TCloseAction);
 begin
   Action := caFree;
-  tela   := nil;
+  Tela   := nil;
 end;
 
 procedure TDBEdit_Calendario.DoExit;
@@ -197,7 +183,6 @@ begin
       Exit;
 
   try
-
       // Verificar Evento AoValidarData
       if Assigned(fValidarData) then
           AoValidarData(self);
@@ -205,7 +190,6 @@ begin
       StrToDate(Text);
   Except
       Setfocus;
-
       // Verificar Evento AoErroValidar
       if Assigned(fAoErroValidar) then
           AoErroValidar(self);
@@ -213,23 +197,23 @@ begin
       ShowMessage('Data inserida é Inválida!');
   end;
 
-  if tela <> nil then
-      tela.Close;
+  if Tela <> nil then
+      Tela.Close;
 
 end;
 
 procedure TDBEdit_Calendario.Change;
 begin
   inherited;
-  botao.Repaint;
+  Botao.Repaint;
 end;
 
 procedure TDBEdit_Calendario.DblClicar(sender: TObject);
 begin
-  Text                                                 := FormatDateTime(formato_data, Date);
+  Text                                                 := FormatDateTime(Formato_Data, Date);
   DataSource.DataSet.FieldByName(DataField).AsDateTime := Date;
 
-  if tela <> Nil then Tela.Close;
+  if Tela <> Nil then Tela.Close;
 end;
 
 end.
