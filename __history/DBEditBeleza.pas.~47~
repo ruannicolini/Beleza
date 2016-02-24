@@ -142,7 +142,6 @@ begin
   if (ClientDB.RecordCount > 1) or (FMostrar) then
   begin
       tTela := tTelaSelRegistros.CreateNew(Self); // PROBLEMA AQUI
-
       tTela.Dataset := ClientDB;
       tTela.Abrir;
       if tTela.Tag = 1 then exit;
@@ -175,10 +174,10 @@ begin
 
 end;
 
-constructor TDBEditBeleza.Create(dono: tcomponent);
+constructor TDBEditBeleza.Create(Dono: TComponent);
 begin
   inherited;
-  fsql      := tstringlist.create;
+  fsql      := tstringlist.Create;
   fsqlquery := '';
   fmostrar  := false;
 
@@ -186,7 +185,7 @@ begin
   Width           := 200;
   font.name       := 'Tahoma';
   Text            := '';
-  Ativar_Pesquisa := true;
+  Ativar_Pesquisa := True;
   CorBorda        := clGray;
   
   Botao           := TButton.Create(self);
@@ -206,21 +205,23 @@ procedure TDBEditBeleza.doExit;
 begin
   inherited;
 
-  if trim(Text) = '' then
+  if trim(Text) <> '' then
+  begin
       if Assigned(f_outroedit) then
       begin
           if f_outroedit is TDBEdit then
           begin
-//              TDBEdit(f_outroedit).DataSource.DataSet.fieldbyname(TDBEdit(f_outroedit).DataField).Value := ''
+// VERIFICAR ESSA FUNÇÃO
+              TDBEdit(f_outroedit).DataSource.DataSet.fieldbyname(TDBEdit(f_outroedit).DataField).Value := '';
               if TDBEdit(f_outroedit).DataSource.State in dsEditModes then
-                  TDBEdit(f_outroedit).DataSource.DataSet.fieldbyname(TDBEdit(f_outroedit).DataField).Clear
+                TDBEdit(f_outroedit).DataSource.DataSet.fieldbyname(TDBEdit(f_outroedit).DataField).Clear
           end
           else
               f_outroedit.Clear;
       end;
 
 //           (f_outroedit as TCustomEdit).Clear;
-
+  end;
 end;
 
 procedure TDBEditBeleza.KeyDown(var Key: Word; Shift: TShiftState);

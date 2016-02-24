@@ -96,7 +96,7 @@ end;
 
 procedure TDBEditBeleza.Clicar(Sender: TObject);
 begin
-
+   showmessage('Clicar 1');
   if not Ativar_Pesquisa then exit;
 
   // verifica se tem texto para executar o procedimento
@@ -142,43 +142,54 @@ begin
   if (ClientDB.RecordCount > 1) or (FMostrar) then
   begin
       tTela := tTelaSelRegistros.CreateNew(Self); // PROBLEMA AQUI
-
       tTela.Dataset := ClientDB;
       tTela.Abrir;
       if tTela.Tag = 1 then exit;
   end;
-
+  showmessage('Clicar 2');
   Text := ClientDB.FieldbyName(Campo).AsString;
   DataSource.DataSet.FieldbyName(DataField).AsString := Text;
-
+  showmessage('Clicar 3');
   //verifica se tem q preencher o outro edit
   try
       if Assigned(f_outroedit) then
-          if f_outroedit is TDBEdit then
-              TDBEdit(f_outroedit).DataSource.DataSet.fieldbyname(TDBEdit(f_outroedit).DataField).Value:= ClientDB.fieldbyname(f_outrocampo).Value
+      begin
+          if ClientDB.IsEmpty then
+          begin
+             if f_outroedit is TDBEdit then
+                 TDBEdit(f_outroedit).DataSource.DataSet.fieldbyname(TDBEdit(f_outroedit).DataField).Clear
+             else
+                 f_outroedit.Clear;
+          end
           else
-              f_outroedit.text := ClientDB.fieldbyname(f_outrocampo).AsString;
+          begin
+             if f_outroedit is TDBEdit then
+                 TDBEdit(f_outroedit).DataSource.DataSet.fieldbyname(TDBEdit(f_outroedit).DataField).Value:= ClientDB.fieldbyname(f_outrocampo).Value
+             else
+                 f_outroedit.text := ClientDB.fieldbyname(f_outrocampo).AsString;
+          end
+      end;
   except
   end;
-
+  showmessage('Clicar 4');
   //marcar o Checkbox (se tiver associado)
   try
       if Assigned(fcheck) then
           fcheck.Checked:= True;
   except
   end;
-
+  showmessage('Clicar 5');
   //testa se o programador digitou alguma
   //coisa no evento do DepoisPesquisa
   if assigned(DepoisPesquisa) then
       DepoisPesquisa(self, TDataset(ClientDB));
-
+   showmessage('Clicar 6');
 end;
 
-constructor TDBEditBeleza.Create(dono: tcomponent);
+constructor TDBEditBeleza.Create(Dono: TComponent);
 begin
   inherited;
-  fsql      := tstringlist.create;
+  fsql      := tstringlist.Create;
   fsqlquery := '';
   fmostrar  := false;
 
@@ -205,23 +216,25 @@ end;
 procedure TDBEditBeleza.doExit;
 begin
   inherited;
-
+  showmessage('exit 1');
   if trim(Text) = '' then
+  begin
       if Assigned(f_outroedit) then
       begin
           if f_outroedit is TDBEdit then
           begin
 // VERIFICAR ESSA FUNÇÃO
-              TDBEdit(f_outroedit).DataSource.DataSet.fieldbyname(TDBEdit(f_outroedit).DataField).Value := ''
+              TDBEdit(f_outroedit).DataSource.DataSet.fieldbyname(TDBEdit(f_outroedit).DataField).Value := '';
               if TDBEdit(f_outroedit).DataSource.State in dsEditModes then
-                  TDBEdit(f_outroedit).DataSource.DataSet.fieldbyname(TDBEdit(f_outroedit).DataField).Clear
+                TDBEdit(f_outroedit).DataSource.DataSet.fieldbyname(TDBEdit(f_outroedit).DataField).Clear
           end
           else
               f_outroedit.Clear;
       end;
 
 //           (f_outroedit as TCustomEdit).Clear;
-
+  end;
+  showmessage('exit 2');
 end;
 
 procedure TDBEditBeleza.KeyDown(var Key: Word; Shift: TShiftState);

@@ -142,7 +142,6 @@ begin
   if (ClientDB.RecordCount > 1) or (FMostrar) then
   begin
       tTela := tTelaSelRegistros.CreateNew(Self); // PROBLEMA AQUI
-
       tTela.Dataset := ClientDB;
       tTela.Abrir;
       if tTela.Tag = 1 then exit;
@@ -154,10 +153,22 @@ begin
   //verifica se tem q preencher o outro edit
   try
       if Assigned(f_outroedit) then
-          if f_outroedit is TDBEdit then
-              TDBEdit(f_outroedit).DataSource.DataSet.fieldbyname(TDBEdit(f_outroedit).DataField).Value:= ClientDB.fieldbyname(f_outrocampo).Value
+      begin
+          if ClientDB.IsEmpty then
+          begin
+             if f_outroedit is TDBEdit then
+                 TDBEdit(f_outroedit).DataSource.DataSet.fieldbyname(TDBEdit(f_outroedit).DataField).Clear
+             else
+                 f_outroedit.Clear;
+          end
           else
-              f_outroedit.text := ClientDB.fieldbyname(f_outrocampo).AsString;
+          begin
+             if f_outroedit is TDBEdit then
+                 TDBEdit(f_outroedit).DataSource.DataSet.fieldbyname(TDBEdit(f_outroedit).DataField).Value:= ClientDB.fieldbyname(f_outrocampo).Value
+             else
+                 f_outroedit.text := ClientDB.fieldbyname(f_outrocampo).AsString;
+          end
+      end;
   except
   end;
 
@@ -175,10 +186,10 @@ begin
 
 end;
 
-constructor TDBEditBeleza.Create(dono: tcomponent);
+constructor TDBEditBeleza.Create(Dono: TComponent);
 begin
   inherited;
-  fsql      := tstringlist.create;
+  fsql      := tstringlist.Create;
   fsqlquery := '';
   fmostrar  := false;
 
@@ -207,6 +218,7 @@ begin
   inherited;
 
   if trim(Text) = '' then
+  begin
       if Assigned(f_outroedit) then
       begin
           if f_outroedit is TDBEdit then
@@ -221,7 +233,7 @@ begin
       end;
 
 //           (f_outroedit as TCustomEdit).Clear;
-
+  end;
 end;
 
 procedure TDBEditBeleza.KeyDown(var Key: Word; Shift: TShiftState);

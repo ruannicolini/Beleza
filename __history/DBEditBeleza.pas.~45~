@@ -143,8 +143,6 @@ begin
   begin
       tTela := tTelaSelRegistros.CreateNew(Self); // PROBLEMA AQUI
       tTela.Dataset := ClientDB;
-      TDBEdit(f_outroedit).DataSource.DataSet.fieldbyname(TDBEdit(f_outroedit).DataField).Value := '';
-
       tTela.Abrir;
       if tTela.Tag = 1 then exit;
   end;
@@ -176,10 +174,10 @@ begin
 
 end;
 
-constructor TDBEditBeleza.Create(dono: tcomponent);
+constructor TDBEditBeleza.Create(Dono: TComponent);
 begin
   inherited;
-  fsql      := tstringlist.create;
+  fsql      := tstringlist.Create;
   fsqlquery := '';
   fmostrar  := false;
 

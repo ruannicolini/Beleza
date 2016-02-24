@@ -174,10 +174,10 @@ begin
 
 end;
 
-constructor TDBEditBeleza.Create(dono: tcomponent);
+constructor TDBEditBeleza.Create(Dono: TComponent);
 begin
   inherited;
-  fsql      := tstringlist.create;
+  fsql      := tstringlist.Create;
   fsqlquery := '';
   fmostrar  := false;
 
@@ -206,6 +206,7 @@ begin
   inherited;
 
   if trim(Text) = '' then
+  begin
       if Assigned(f_outroedit) then
       begin
           if f_outroedit is TDBEdit then
@@ -220,7 +221,7 @@ begin
       end;
 
 //           (f_outroedit as TCustomEdit).Clear;
-
+  end;
 end;
 
 procedure TDBEditBeleza.KeyDown(var Key: Word; Shift: TShiftState);

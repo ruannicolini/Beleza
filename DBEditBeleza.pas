@@ -96,7 +96,6 @@ end;
 
 procedure TDBEditBeleza.Clicar(Sender: TObject);
 begin
-
   if not Ativar_Pesquisa then exit;
 
   // verifica se tem texto para executar o procedimento
@@ -146,32 +145,40 @@ begin
       tTela.Abrir;
       if tTela.Tag = 1 then exit;
   end;
-
   Text := ClientDB.FieldbyName(Campo).AsString;
   DataSource.DataSet.FieldbyName(DataField).AsString := Text;
 
   //verifica se tem q preencher o outro edit
   try
       if Assigned(f_outroedit) then
-          if f_outroedit is TDBEdit then
-              TDBEdit(f_outroedit).DataSource.DataSet.fieldbyname(TDBEdit(f_outroedit).DataField).Value:= ClientDB.fieldbyname(f_outrocampo).Value
+      begin
+          if ClientDB.IsEmpty then
+          begin
+             if f_outroedit is TDBEdit then
+                 TDBEdit(f_outroedit).DataSource.DataSet.fieldbyname(TDBEdit(f_outroedit).DataField).Clear
+             else
+                 f_outroedit.Clear;
+          end
           else
-              f_outroedit.text := ClientDB.fieldbyname(f_outrocampo).AsString;
+          begin
+             if f_outroedit is TDBEdit then
+                 TDBEdit(f_outroedit).DataSource.DataSet.fieldbyname(TDBEdit(f_outroedit).DataField).Value:= ClientDB.fieldbyname(f_outrocampo).Value
+             else
+                 f_outroedit.text := ClientDB.fieldbyname(f_outrocampo).AsString;
+          end
+      end;
   except
   end;
-
   //marcar o Checkbox (se tiver associado)
   try
       if Assigned(fcheck) then
           fcheck.Checked:= True;
   except
   end;
-
   //testa se o programador digitou alguma
   //coisa no evento do DepoisPesquisa
   if assigned(DepoisPesquisa) then
       DepoisPesquisa(self, TDataset(ClientDB));
-
 end;
 
 constructor TDBEditBeleza.Create(Dono: TComponent);
@@ -204,14 +211,14 @@ end;
 procedure TDBEditBeleza.doExit;
 begin
   inherited;
-
   if trim(Text) = '' then
+  begin
       if Assigned(f_outroedit) then
       begin
           if f_outroedit is TDBEdit then
           begin
 // VERIFICAR ESSA FUNÇÃO
-              TDBEdit(f_outroedit).DataSource.DataSet.fieldbyname(TDBEdit(f_outroedit).DataField).Value := '';
+              TDBEdit(f_outroedit).DataSource.DataSet.fieldbyname(TDBEdit(f_outroedit).DataField).Clear;
               if TDBEdit(f_outroedit).DataSource.State in dsEditModes then
                 TDBEdit(f_outroedit).DataSource.DataSet.fieldbyname(TDBEdit(f_outroedit).DataField).Clear
           end
@@ -220,7 +227,7 @@ begin
       end;
 
 //           (f_outroedit as TCustomEdit).Clear;
-
+  end;
 end;
 
 procedure TDBEditBeleza.KeyDown(var Key: Word; Shift: TShiftState);
