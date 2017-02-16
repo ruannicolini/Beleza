@@ -233,7 +233,7 @@ end;
 procedure TDBEditBeleza.KeyDown(var Key: Word; Shift: TShiftState);
 begin
   inherited;
-  if key = vk_return then
+  if key = 13 then//if key = vk_return then
       botao.Click;
 end;
 

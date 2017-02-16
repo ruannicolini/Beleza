@@ -27,6 +27,7 @@ type
     Progr: tCaixaProgresso;
     FMarcarLinhaInteira: Boolean;
     FCorLinhaMarcada: tColor;
+    FCorFonteLinhaMarcada: tColor;
     FBloquearExportacoes: Boolean;
     procedure setcor_2(const Value: TColor);
     procedure setdircor2(const Value: VDirecao_Cor2);
@@ -48,6 +49,7 @@ type
     procedure ExportarPlanilha(tipo: tTipoPlanilha; Arquivo: String);
     procedure SetMarcarLinhaInteira(const Value: Boolean);
     procedure SetCorLinhaMarcada(const Value: tColor);
+    procedure SetCorFonteLinhaMarcada(const Value: tColor);
     procedure SetBloquearExportacoes(const Value: Boolean); // Exporta Grid pra Planilha
 
     { Private declarations }
@@ -67,6 +69,7 @@ type
     Property ClickTituloOrdenar: Boolean read FOrdenar write SetOrdenar;
     Property MarcarLinhaInteira: Boolean read FMarcarLinhaInteira write SetMarcarLinhaInteira;
     Property CorLinhaMarcada: tColor read FCorLinhaMarcada write SetCorLinhaMarcada;
+    Property CorFonteLinhaMarcada: tColor read FCorFonteLinhaMarcada write SetCorFonteLinhaMarcada;
     Property BloquearExportacoes: Boolean read FBloquearExportacoes write SetBloquearExportacoes;
 end;
 
@@ -285,10 +288,11 @@ begin
   Options            := Options - [dgColLines];
   FixedColor         := $00FFC64F;
   Font.Name          := 'Tahoma';
-  TitleFont.Color    := clWhite;
+  TitleFont.Color    := clBlack; //clWhite
   TitleFont.Name     := 'Tahoma';
   Cor_2              := $00FFF2D9;
   CorLinhaMarcada    := clSilver;
+  CorFonteLinhaMarcada    := clgreen;
   BorderStyle        := BSNone;
   Direcao_Cor2       := dg_Vertical;
   Direcao_Enter      := dg_Horiz;
@@ -378,6 +382,10 @@ begin
       if Rect.Top = TStringGrid(Self).CellRect(DataCol, TStringGrid(Self).Row).Top then
       begin
           Canvas.Brush.Color := CorLinhaMarcada;
+          if(DrawingStyle = TGridDrawingStyle(2))then     //gdsGradient
+          begin
+            canvas.Font.Color := CorFonteLinhaMarcada; // Ruan colocou isso aqui!!
+          end;
           Canvas.FillRect(Rect);
           DefaultDrawColumnCell(Rect, DataCol, Column, State);
       end;
@@ -756,6 +764,11 @@ end;
 procedure TDBGridBeleza.SetCorLinhaMarcada(const Value: tColor);
 begin
   FCorLinhaMarcada := Value;
+end;
+
+procedure TDBGridBeleza.SetCorFonteLinhaMarcada(const Value: tColor);
+begin
+  FCorFonteLinhaMarcada := Value;
 end;
 
 procedure TDBGridBeleza.setcor_2(const Value: TColor);
